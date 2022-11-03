@@ -15,9 +15,9 @@
 #define pwm2 9
 //
 #define pwm_max 255
-#define pwm_left 120
-#define pwm_right 120
-#define pwm_forward 150
+#define pwm_left 0
+#define pwm_right 0
+#define pwm_forward 120
 //start button
 //#define sw A5
 //colorSensoe
@@ -30,11 +30,6 @@ typedef struct {
   int ir;
 } ColorSensor;
 ColorSensor color;
-
-//variale
-bool start = 0;
-int pwm = 255;
-
 
 void setup() {
 
@@ -61,15 +56,39 @@ void loop() {
 
   //readColorData();
 
- // printSens();
-  left(pwm_left);
-  
-    delay(2000);
-      right(pwm_right);
-delay(2000);
-/*
-    start = 1;
-    while (start) {
+  // printSens();
+  //left(pwm_left);
+  //  analogWrite(pwm1, pwm_max-100);
+  //  analogWrite(pwm2, pwm_max-120);
+  //  // delay(2000);
+  //  // right(pwm_right);
+  //  digitalWrite(IN1, 0);
+  //  digitalWrite(IN2, 1);
+  //  digitalWrite(IN3, 1);
+  //  digitalWrite(IN4, 0);
+  //
+  //  delay(2000);
+  //  digitalWrite(IN1, 1);
+  //  digitalWrite(IN2, 0);
+  //  digitalWrite(IN3, 0);
+  //  digitalWrite(IN4, 1);
+  //  delayMicroseconds(500);
+  //  digitalWrite(IN1, 1);
+  //  digitalWrite(IN2, 1);
+  //  digitalWrite(IN3, 1);
+  //  digitalWrite(IN4, 1);
+  //  delay(2000);
+
+  // start = 1;
+  delay(3000);
+  masiryab(1);
+
+}
+
+void masiryab(char start) {
+
+
+  while (start) {
     bool sen1 = digitalRead(A2);
     bool sen2 = digitalRead(5);
     bool sen3 = digitalRead(3);
@@ -129,9 +148,10 @@ delay(2000);
       Stop();
 
     }
-    }
-  */
+  }
+
 }
+
 void forward(char Speed) {
   digitalWrite(IN1, 0);
   digitalWrite(IN2, 1);
@@ -167,12 +187,12 @@ void right(char Speed2) {
   analogWrite(pwm2, Speed2);
 }
 void Stop(void) {
-  digitalWrite(IN1, 0);
-  digitalWrite(IN2, 0);
-  digitalWrite(IN3, 0);
-  digitalWrite(IN4, 0);
+  digitalWrite(IN1, 1);
+  digitalWrite(IN2, 1);
+  digitalWrite(IN3, 1);
+  digitalWrite(IN4, 1);
   analogWrite(pwm1, pwm_max);
-  analogWrite(pwm2, pwm_max);
+  analogWrite(pwm2, 0);
 }
 
 void configPins(void) {
