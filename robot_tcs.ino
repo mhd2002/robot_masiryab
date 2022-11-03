@@ -1,11 +1,11 @@
 #include <Wire.h>
 //the rest of sensors
-#define fire_detector A1
+#define fire_detector A3
 #define battery_feedback A0
 #define green_detector1 A6
 #define green_detector2 A7
 // digital IOs
-#define led A5
+//#define led A5
 #define fan 12
 #define IN1 6
 #define IN2 7
@@ -15,8 +15,8 @@
 #define pwm2 9
 //
 #define pwm_max 255
-#define pwm_left 0
-#define pwm_right 0
+#define pwm_left 100
+#define pwm_right 100
 #define pwm_forward 120
 //start button
 //#define sw A5
@@ -34,12 +34,12 @@ ColorSensor color;
 void setup() {
 
   configPins();
-  Stop();
+    Stop();
 
-  Wire.begin();
+  // Wire.begin();
   Serial.begin(9600);
 
-  configColorSensor();
+  // / configColorSensor();
   Serial.println("ready");
 
 }
@@ -56,31 +56,8 @@ void loop() {
 
   //readColorData();
 
-  // printSens();
-  //left(pwm_left);
-  //  analogWrite(pwm1, pwm_max-100);
-  //  analogWrite(pwm2, pwm_max-120);
-  //  // delay(2000);
-  //  // right(pwm_right);
-  //  digitalWrite(IN1, 0);
-  //  digitalWrite(IN2, 1);
-  //  digitalWrite(IN3, 1);
-  //  digitalWrite(IN4, 0);
-  //
-  //  delay(2000);
-  //  digitalWrite(IN1, 1);
-  //  digitalWrite(IN2, 0);
-  //  digitalWrite(IN3, 0);
-  //  digitalWrite(IN4, 1);
-  //  delayMicroseconds(500);
-  //  digitalWrite(IN1, 1);
-  //  digitalWrite(IN2, 1);
-  //  digitalWrite(IN3, 1);
-  //  digitalWrite(IN4, 1);
-  //  delay(2000);
-
-  // start = 1;
-  delay(3000);
+  //printSens();
+   delay(3000);
   masiryab(1);
 
 }
@@ -89,62 +66,62 @@ void masiryab(char start) {
 
 
   while (start) {
-    bool sen1 = digitalRead(A2);
-    bool sen2 = digitalRead(5);
-    bool sen3 = digitalRead(3);
+    bool sen1 = digitalRead(13);
+    bool sen2 = digitalRead(2);
+    bool sen3 = digitalRead(5);
     bool sen4 = digitalRead(4);
-    bool sen5 = digitalRead(2);
-    bool sen6 = digitalRead(13);
-
+    bool sen5 = digitalRead(3);
+    bool sen6 = digitalRead(A2);
 
     if ((sen1) && (sen6) && (!sen2) && (!sen3) && (!sen4) && (!sen5)) {
 
       forward(pwm_forward);
-    } else if ((sen1) && (!sen6) && (!sen2) && (!sen3) && (sen4) && (!sen5)) {
+
+    } else if ((sen1) && (!sen6) && (!sen2) && (!sen3) && (!sen4) && (!sen5)) {
+
       forward(pwm_forward);
-    } else if ((sen1) && (sen6) && (!sen2) && (!sen3) && (sen4) && (!sen5)) {
-      right(pwm_right);
 
-    } else if ((sen1) && (!sen6) && (sen2) && (!sen3) && (!sen4) && (!sen5)) {
-      right(pwm_right);
+    } else if ((!sen1) && (sen6) && (!sen2) && (sen3) && (!sen4) && (!sen5)) {
 
-    } else if ((!sen1) && (!sen6) && (sen2) && (!sen3) && (sen4) && (!sen5)) {
-      right(pwm_right);
-
-    } else if ((sen1) && (!sen6) && (!sen2) && (!sen3) && (sen4) && (!sen5)) {
-      right(pwm_right);
-
-    } else if ((!sen1) && (sen6) && (sen2) && (!sen3) && (sen4) && (!sen5)) {
-      right(pwm_right);
-
-    } else if ((!sen1) && (sen6) && (!sen2) && (!sen3) && (sen4) && (!sen5)) {
-      right(pwm_right);
-
-    } else if ((!sen1) && (!sen6) && (sen2) && (!sen3) && (!sen4) && (!sen5)) {
-      right(pwm_right);
-      /////////////////////////////////////////
-    } else if ((sen1) && (!sen6) && (!sen2) && (sen3) && (!sen4) && (!sen5)) {
-      left(pwm_left);
-
-    } else if ((sen1) && (!sen6) && (!sen2) && (!sen3) && (!sen4) && (sen5)) {
-      left(pwm_left);
-
-    } else if ((!sen1) && (!sen6) && (!sen2) && (sen3) && (!sen4) && (sen5)) {
-      left(pwm_left);
-
-    } else if ((!sen1) && (sen6) && (!sen2) && (!sen3) && (!sen4) && (sen5)) {
-      left(pwm_left);
-
-    } else if ((!sen1) && (!sen6) && (!sen2) && (sen3) && (!sen4) && (!sen5)) {
       left(pwm_left);
 
     } else if ((!sen1) && (sen6) && (!sen2) && (sen3) && (!sen4) && (sen5)) {
+
       left(pwm_left);
 
-    } else if ((sen1) && (sen6) && (!sen2) && (!sen3) && (!sen4) && (sen5)) {
+    } else if ((!sen1) && (!sen6) && (!sen2) && (sen3) && (!sen4) && (sen5)) {
+
       left(pwm_left);
 
-    } else if ((sen1) && (sen6) && (sen2) && (sen3) && (sen4) && (sen5)) {
+    } else if ((!sen1) && (sen6) && (!sen2) && (!sen3) && (!sen4) && (sen5)) {
+
+      left(pwm_left);
+
+    } else if ((!sen1) && (!sen6) && (!sen2) && (sen3) && (!sen4) && (!sen5)) {
+
+      left(pwm_left);
+      //////////////////////////////////////////////////////
+    } else if ((!sen1) && (sen6) && (sen2) && (!sen3) && (!sen4) && (!sen5)) {
+      right(pwm_right);
+
+    } else if ((!sen1) && (sen6) && (sen2) && (!sen3) && (sen4) && (!sen5)) {
+
+      right(pwm_right);
+
+    } else if ((!sen1) && (!sen6) && (sen2) && (!sen3) && (sen4) && (!sen5)) {
+
+      right(pwm_right);
+
+    } else if ((!sen1) && (sen6) && (!sen2) && (!sen3) && (sen4) && (!sen5)) {
+
+      right(pwm_right);
+
+    } else if ((!sen1) && (!sen6) && (sen2) && (!sen3) && (!sen4) && (!sen5)) {
+
+      right(pwm_right);
+
+    } else if  ((sen1) && (sen6) && (sen2) && (sen3) && (sen4) && (sen5)) {
+
       Stop();
 
     }
@@ -152,7 +129,7 @@ void masiryab(char start) {
 
 }
 
-void forward(char Speed) {
+void forward(unsigned char Speed) {
   digitalWrite(IN1, 0);
   digitalWrite(IN2, 1);
   digitalWrite(IN3, 1);
@@ -161,45 +138,45 @@ void forward(char Speed) {
   analogWrite(pwm2, Speed - 20);
 }
 
+void left(unsigned char Speed) {
+  digitalWrite(IN1, 0);
+  digitalWrite(IN2, 1);
+  digitalWrite(IN3, 1);
+  digitalWrite(IN4, 1);
+  analogWrite(pwm1, Speed);
+  analogWrite(pwm2, pwm_max);
+}
+void right(unsigned char Speed) {
+  digitalWrite(IN1, 1);
+  digitalWrite(IN2, 1);
+  digitalWrite(IN3, 1);
+  digitalWrite(IN4, 0);
+  analogWrite(pwm1, pwm_max);
+  analogWrite(pwm2, Speed);
+}
 void backward(char Speed) {
   digitalWrite(IN1, 1);
   digitalWrite(IN2, 0);
   digitalWrite(IN3, 0);
   digitalWrite(IN4, 1);
   analogWrite(pwm1, Speed);
-  analogWrite(pwm2, Speed);
+  analogWrite(pwm2, Speed - 20);
 }
 
-void left(char Speed1) {
-  digitalWrite(IN1, 0);
-  digitalWrite(IN2, 1);
-  digitalWrite(IN3, 1);
-  digitalWrite(IN4, 1);
-  analogWrite(pwm1, Speed1);
-  analogWrite(pwm2, pwm_max);
-}
-void right(char Speed2) {
-  digitalWrite(IN1, 1);
-  digitalWrite(IN2, 1);
-  digitalWrite(IN3, 1);
-  digitalWrite(IN4, 0);
-  analogWrite(pwm1, pwm_max);
-  analogWrite(pwm2, Speed2);
-}
 void Stop(void) {
   digitalWrite(IN1, 1);
   digitalWrite(IN2, 1);
   digitalWrite(IN3, 1);
   digitalWrite(IN4, 1);
   analogWrite(pwm1, pwm_max);
-  analogWrite(pwm2, 0);
+  analogWrite(pwm2, pwm_max);
 }
 
 void configPins(void) {
   for (int i = 6; i < 13; i++) {
     pinMode(i, OUTPUT);
   }
-  pinMode(led, OUTPUT);
+  //pinMode(led, OUTPUT);
   for (int i = 2; i < 6; i++) {
     pinMode(i, INPUT);
   }
