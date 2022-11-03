@@ -1,0 +1,6 @@
+  if ((sen1) && (sen6) && (!sen2) && (!sen3) && (!sen4) && (!sen5)) {
+
+      forward(pwm_forward);
+    } else if ((sen1) && (!sen6) && (!sen2) && (!sen3) && (!sen4) && (!sen5)) {
+      forward(pwm_forward);
+    } 
